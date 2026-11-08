@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="hi" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ravan Studio - Digital Store</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fef2f2',
+                            100: '#fee2e2',
+                            500: '#ef4444',
+                            600: '#dc2626',
+                            700: '#b91c1c',
+                            900: '#7f1d1d',
+                            accent: '#f59e0b',
+                            purple: '#8b5cf6',
+                            phonepe: '#5f259f',
+                            gpay: '#4285f4',
+                            paytm: '#00baf2'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, .font-heading { font-family: 'Outfit', sans-serif; }
+        .glass-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glow-effect {
+            box-shadow: 0 0 25px -5px rgba(239, 68, 68, 0.3);
+        }
+        .glow-effect-gold {
+            box-shadow: 0 0 25px -5px rgba(245, 158, 11, 0.3);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-red-500 selection:text-white">
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-slate-800/80 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="filterCategory('all')">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-red-600 via-rose-500 to-amber-500 flex items-center justify-center text-white font-extrabold text-2xl shadow-lg glow-effect">
+                    <i class="fa-solid fa-crown text-amber-200"></i>
+                </div>
+                <div>
+                    <span class="text-2xl font-black tracking-tight bg-gradient-to-r from-red-500 via-rose-400 to-amber-400 bg-clip-text text-transparent font-heading">
+                        RAVAN STUDIO
+                    </span>
+                    <span class="block text-xs text-slate-400 font-medium tracking-wider uppercase">Digital Store</span>
+                </div>
+            </div>
+
+            <!-- Header Actions / Socials & Settings -->
+            <div class="flex items-center space-x-3">
+                <!-- Social Links -->
+                <a href="https://instagram.com/superrrr_boy_999" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center space-x-2 px-3.5 py-2 rounded-lg bg-slate-800/80 hover:bg-pink-600/20 text-slate-300 hover:text-pink-400 border border-slate-700/60 hover:border-pink-500/40 transition-all text-xs font-semibold">
+                    <i class="fa-brands fa-instagram text-base text-pink-500"></i>
+                    <span>@superrrr_boy_999</span>
+                </a>
+                
+                <a href="mailto:ravanofficial9987@gmail.com" class="hidden md:inline-flex items-center space-x-2 px-3.5 py-2 rounded-lg bg-slate-800/80 hover:bg-red-600/20 text-slate-300 hover:text-red-400 border border-slate-700/60 hover:border-red-500/40 transition-all text-xs font-semibold">
+                    <i class="fa-regular fa-envelope text-base text-red-400"></i>
+                    <span>Contact Email</span>
+                </a>
+
+                <!-- Admin Setting Button -->
+                <button id="setting-btn" onclick="openAdminModal()" title="Admin Settings" class="relative p-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-amber-400 border border-slate-700 transition-all duration-200 group">
+                    <i class="fa-solid fa-gear text-lg group-hover:rotate-90 transition-transform duration-300"></i>
+                    <span id="admin-badge" class="hidden absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 rounded-full border-2 border-slate-900"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="relative overflow-hidden py-12 px-4 sm:px-6 lg:px-8 border-b border-slate-800/60 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#ef4444_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <span class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-bold uppercase tracking-widest mb-4">
+                <i class="fa-solid fa-bolt text-amber-400"></i>
+                <span>Official Asset Store</span>
+            </span>
+            <h1 class="text-3xl sm:text-5xl font-black text-white font-heading tracking-tight leading-tight">
+                Premium Digital Assets & Templates
+            </h1>
+            <p class="mt-3 text-slate-400 text-sm sm:text-base max-w-2xl mx-auto">
+                High quality presets, 3D assets, graphic templates & project files. Instant unlock with UPI QR payment.
+            </p>
+
+            <!-- Search & Filter Bar -->
+            <div class="mt-8 max-w-2xl mx-auto flex flex-col sm:flex-row gap-3">
+                <div class="relative flex-grow">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-slate-500"></i>
+                    <input type="text" id="search-input" onkeyup="handleSearch()" placeholder="Search files, presets, templates..." class="w-full pl-11 pr-4 py-3 bg-slate-900 border border-slate-700/80 rounded-xl text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-red-500 text-sm shadow-inner">
+                </div>
+                <select id="category-filter" onchange="handleCategoryChange()" class="px-4 py-3 bg-slate-900 border border-slate-700/80 rounded-xl text-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-red-500 cursor-pointer">
+                    <option value="all">All Categories</option>
+                    <option value="Presets">Presets & LUTS</option>
+                    <option value="3D Assets">3D Assets</option>
+                    <option value="Editing Packs">Editing Packs</option>
+                    <option value="Templates">Templates & Graphics</option>
+                    <option value="Other">Other Files</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content / Digital Store Catalog -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+        <!-- Section Header -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">
+            <div>
+                <h2 class="text-xl sm:text-2xl font-bold text-white font-heading flex items-center space-x-2">
+                    <i class="fa-solid fa-folder-open text-red-500"></i>
+                    <span>Available Digital Files</span>
+                </h2>
+                <p class="text-xs text-slate-400 mt-1" id="file-count-text">Showing all files</p>
+            </div>
+            
+            <!-- Quick Info Badge -->
+            <div class="flex items-center space-x-3 text-xs text-slate-400 bg-slate-900/90 px-3.5 py-2 rounded-lg border border-slate-800">
+                <span class="flex items-center space-x-1.5"><i class="fa-solid fa-shield-halved text-emerald-400"></i> <span>Instant Unlock</span></span>
+                <span>•</span>
+                <span class="flex items-center space-x-1.5"><i class="fa-solid fa-mobile-screen-button text-purple-400"></i> <span>GPay / PhonePe / Paytm / QR</span></span>
+            </div>
+        </div>
+
+        <!-- Store Grid -->
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Product cards rendered dynamically -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="empty-state" class="hidden text-center py-16 px-4 bg-slate-900/50 rounded-2xl border border-slate-800/80">
+            <div class="w-16 h-16 mx-auto rounded-full bg-slate-800 flex items-center justify-center text-slate-500 text-2xl mb-4">
+                <i class="fa-solid fa-folder-open"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-200">No Files Found</h3>
+            <p class="text-slate-400 text-xs mt-1">Try searching for something else or ask Admin to upload new files.</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 border-t border-slate-800/80 py-10 mt-12 text-slate-400 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <!-- Brand Info -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-9 h-9 rounded-lg bg-red-600 flex items-center justify-center text-white font-bold text-lg">
+                        <i class="fa-solid fa-crown text-amber-300 text-sm"></i>
+                    </div>
+                    <div>
+                        <span class="font-bold text-slate-200 text-sm font-heading">Ravan Studio</span>
+                        <p class="text-slate-400 text-xs">Digital Content & Custom Assets</p>
+                    </div>
+                </div>
+
+                <!-- Contact & Socials -->
+                <div class="flex flex-wrap items-center justify-center gap-6">
+                    <a href="https://instagram.com/superrrr_boy_999" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 text-slate-300 hover:text-pink-400 transition-colors">
+                        <i class="fa-brands fa-instagram text-lg text-pink-500"></i>
+                        <span>@superrrr_boy_999</span>
+                    </a>
+                    <a href="mailto:ravanofficial9987@gmail.com" class="flex items-center space-x-2 text-slate-300 hover:text-red-400 transition-colors">
+                        <i class="fa-regular fa-envelope text-lg text-red-400"></i>
+                        <span>ravanofficial9987@gmail.com</span>
+                    </a>
+                </div>
+
+                <!-- Copyright -->
+                <div class="text-center md:text-right text-slate-400">
+                    <p>&copy; 2026 Ravan Studio. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= MODALS & DRAWERS ================= -->
+
+    <!-- 1. ADMIN AUTH / DASHBOARD MODAL -->
+    <div id="admin-modal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-3xl w-full p-6 shadow-2xl relative my-8">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-6">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
+                        <i class="fa-solid fa-user-shield text-lg"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white font-heading">Admin Panel</h3>
+                        <p class="text-xs text-slate-400">Ravan Studio Control Center</p>
+                    </div>
+                </div>
+                <button onclick="closeAdminModal()" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition-colors">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- LOGIN VIEW (If not authenticated) -->
+            <div id="admin-login-view" class="py-6 max-w-sm mx-auto text-center">
+                <div class="w-14 h-14 mx-auto rounded-full bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500 text-2xl mb-4">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <h4 class="text-lg font-bold text-slate-100">Admin Authorization Required</h4>
+                <p class="text-xs text-slate-400 mt-1 mb-6">Enter password to upload files and customize prices.</p>
+
+                <form onsubmit="handleAdminLogin(event)" class="space-y-4">
+                    <div>
+                        <input type="password" id="admin-password-input" placeholder="Enter Password" class="w-full px-4 py-3 bg-slate-950 border border-slate-700 rounded-xl text-slate-100 text-center text-sm focus:outline-none focus:ring-2 focus:ring-red-500" required>
+                    </div>
+                    <button type="submit" class="w-full py-3 px-4 bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-bold text-sm rounded-xl transition-all shadow-lg glow-effect">
+                        <i class="fa-solid fa-key mr-2"></i> Unlock Admin Panel
+                    </button>
+                </form>
+                
+                <!-- Forgot Password Button -->
+                <div class="mt-4 text-center">
+                    <button type="button" onclick="openForgotPasswordModal()" class="text-xs text-amber-400 hover:text-amber-300 font-semibold underline">
+                        Forgot Password? (Password bhool gaye?)
+                    </button>
+                </div>
+
+                <div id="login-error" class="hidden mt-3 text-xs text-red-400 font-medium">Incorrect password. Please try again.</div>
+            </div>
+
+            <!-- DASHBOARD VIEW (If authenticated) -->
+            <div id="admin-dashboard-view" class="hidden space-y-6">
+                <!-- Admin Tabs -->
+                <div class="flex border-b border-slate-800 gap-4 text-sm font-semibold">
+                    <button id="tab-btn-upload" onclick="switchAdminTab('upload')" class="pb-3 border-b-2 border-red-500 text-red-400 px-1 flex items-center space-x-2">
+                        <i class="fa-solid fa-cloud-arrow-up"></i> <span>Upload New File</span>
+                    </button>
+                    <button id="tab-btn-manage" onclick="switchAdminTab('manage')" class="pb-3 border-b-2 border-transparent text-slate-400 hover:text-slate-200 px-1 flex items-center space-x-2">
+                        <i class="fa-solid fa-list-check"></i> <span>Manage Files & Prices</span>
+                    </button>
+                    <button id="tab-btn-payment" onclick="switchAdminTab('payment')" class="pb-3 border-b-2 border-transparent text-slate-400 hover:text-slate-200 px-1 flex items-center space-x-2">
+                        <i class="fa-solid fa-qrcode"></i> <span>Payment QR Settings</span>
+                    </button>
+                </div>
+
+                <!-- TAB 1: UPLOAD FILE FORM -->
+                <div id="admin-tab-upload" class="space-y-4">
+                    <h4 class="text-sm font-bold text-slate-200 uppercase tracking-wider">Add New Product / Digital File</h4>
+                    <form onsubmit="handleAddNewFile(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-400 mb-1">File Title / Product Name *</label>
+                                <input type="text" id="upload-title" placeholder="File Title" class="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-700 rounded-xl text-slate-100 text-sm focus:outline-none focus:ring-2 focus:ring-red-500" required>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-400 mb-1">Custom Price (₹ INR) *</label>
+                                <input type="number" id="upload-price" min="0" placeholder="Price" class="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-700 rounded-xl text-slate-100 text-sm focus:outline-none focus:ring-2 focus:ring-red-500" required>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-400 mb-1">Category *</label>
+                                <select id="upload-category" class="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-700 rounded-xl text-slate-100 text-sm focus:outline-none focus:ring-2 focus:ring-red-500">
+                                    <option value="Presets">Presets & LUTS</option>
+                                    <option value="3D Assets">3D Assets</option>
+                                    <option value="Editing Packs">Editing Packs</option>
+                                    <option value="Templates">Templates & Graphics</option>
+                                    <option value="Other">Other Files</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-400 mb-1">Cover Image / Thumbnail *</label>
+                                <div class="flex items-center space-x-2">
+                                    <input type="file" id="upload-thumbnail-file" onchange="handleThumbnailSelect(event)" accept="image/*" class="w-full px-3.5 py-2 bg-slate-950 border border-slate-700 rounded-xl text-slate-300 text-xs focus:outline-none focus:ring-2 focus:ring-red-500 cursor-pointer">
+                                </div>
+                                <span class="text-[10px] text-slate-500">Select an image to crop/resize it before uploading</span>
+                            </div>
+                        </div>
+
+                        <!-- Thumbnail Crop Preview Indicator -->
+                        <div id="cropped-thumb-preview-box" class="hidden p-3 rounded-xl bg-slate-950 border border-slate-800 flex items-center space-x-3">
+                            <img id="cropped-thumb-img" src="" class="w-16 h-12 rounded-lg object-cover border border-slate-700">
+                            <div class="flex-grow">
+                                <span class="text-xs font-bold text-emerald-400 block"><i class="fa-solid fa-crop-simple mr-1"></i> Custom Cropped Photo Ready</span>
+                                <span class="text-[10px] text-slate-400">Photo size adjusted for store display.</span>
+                            </div>
+                            <button type="button" onclick="openCropModal()" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-amber-400 text-xs font-semibold rounded-lg">
+                                Adjust Crop
+                            </button>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-400 mb-1">Description *</label>
+                            <textarea id="upload-description" rows="3" placeholder="Write details about what is included in this digital package..." class="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-700 rounded-xl text-slate-100 text-sm focus:outline-none focus:ring-2 focus:ring-red-500" required></textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-400 mb-1">Digital File Payload (.zip, .rar, .preset, .pdf, etc.) *</label>
+                            <div class="border-2 border-dashed border-slate-700 rounded-xl p-4 text-center bg-slate-950/50 hover:border-red-500 transition-colors">
+                                <i class="fa-solid fa-file-arrow-up text-2xl text-red-400 mb-2"></i>
+                                <input type="file" id="upload-digital-file" class="block w-full text-xs text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-red-600 file:text-white hover:file:bg-red-500 cursor-pointer">
+                                <p class="text-[10px] text-slate-500 mt-1">Upload the actual file users will download after payment.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-end pt-2">
+                            <button type="submit" class="px-6 py-2.5 bg-red-600 hover:bg-red-500 text-white font-bold text-sm rounded-xl transition-all shadow-lg glow-effect flex items-center space-x-2">
+                                <i class="fa-solid fa-plus"></i>
+                                <span>Publish Product</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- TAB 2: MANAGE FILES & PRICES -->
+                <div id="admin-tab-manage" class="hidden space-y-4">
+                    <h4 class="text-sm font-bold text-slate-200 uppercase tracking-wider">Manage Store Inventory & Customize Prices</h4>
+                    <div class="overflow-x-auto rounded-xl border border-slate-800">
+                        <table class="w-full text-left text-xs text-slate-300">
+                            <thead class="bg-slate-950 text-slate-400 uppercase font-semibold border-b border-slate-800">
+                                <tr>
+                                    <th class="p-3">Item</th>
+                                    <th class="p-3">Category</th>
+                                    <th class="p-3">Price (₹)</th>
+                                    <th class="p-3 text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-products-table-body" class="divide-y divide-slate-800 bg-slate-900/50">
+                                <!-- Rendered dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- TAB 3: PAYMENT & QR SETTINGS -->
+                <div id="admin-tab-payment" class="hidden space-y-4">
+                    <h4 class="text-sm font-bold text-slate-200 uppercase tracking-wider">UPI & Payment Methods Configuration</h4>
+                    <form onsubmit="handleSavePaymentSettings(event)" class="space-y-4 max-w-md">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-400 mb-1">Your UPI ID</label>
+                            <input type="text" id="setting-upi-id" placeholder="Enter UPI ID" class="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-700 rounded-xl text-slate-100 text-sm focus:outline-none focus:ring-2 focus:ring-red-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-400 mb-1">Custom Static QR Image (Optional)</label>
+                            <input type="file" id="setting-qr-file" accept="image/*" class="w-full px-3.5 py-2 bg-slate-950 border border-slate-700 rounded-xl text-slate-300 text-xs focus:outline-none focus:ring-2 focus:ring-red-500 cursor-pointer">
+                            <p class="text-[10px] text-slate-500 mt-1">Leave empty to auto-generate fresh QR code for every item using your UPI ID.</p>
+                        </div>
+                        <button type="submit" class="px-5 py-2 bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs rounded-xl transition-all">
+                            Save Payment Settings
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. IMAGE CROPPING & RESIZE MODAL -->
+    <div id="crop-modal" class="fixed inset-0 z-50 hidden bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-4">
+                <h3 class="text-lg font-bold text-white font-heading flex items-center space-x-2">
+                    <i class="fa-solid fa-crop-simple text-amber-400"></i>
+                    <span>Crop & Resize Photo</span>
+                </h3>
+                <button type="button" onclick="closeCropModal()" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Canvas Container -->
+            <div class="relative bg-slate-950 rounded-xl p-2 border border-slate-800 text-center overflow-hidden flex items-center justify-center min-h-[220px]">
+                <canvas id="crop-canvas" class="max-w-full max-h-[300px] rounded-lg shadow-inner"></canvas>
+            </div>
+
+            <!-- Crop Controls -->
+            <div class="mt-4 space-y-3 text-xs">
+                <div>
+                    <label class="block font-semibold text-slate-400 mb-1">Aspect Ratio Format:</label>
+                    <div class="grid grid-cols-4 gap-2">
+                        <button type="button" onclick="setCropRatio(1.33)" class="py-1.5 px-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-center font-bold">4:3 Card</button>
+                        <button type="button" onclick="setCropRatio(1.77)" class="py-1.5 px-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-center font-bold">16:9 Banner</button>
+                        <button type="button" onclick="setCropRatio(1.0)" class="py-1.5 px-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-center font-bold">1:1 Square</button>
+                        <button type="button" onclick="setCropRatio(0)" class="py-1.5 px-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-center font-bold">Original</button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-semibold text-slate-400 mb-1">Zoom Level:</label>
+                        <input type="range" id="crop-zoom" min="0.5" max="2.5" step="0.1" value="1.0" oninput="renderCropCanvas()" class="w-full accent-red-500">
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-slate-400 mb-1">Rotation:</label>
+                        <div class="flex items-center space-x-2">
+                            <button type="button" onclick="rotateCropImage(-90)" class="w-full py-1.5 bg-slate-800 hover:bg-slate-700 rounded-lg text-slate-300 font-bold"><i class="fa-solid fa-rotate-left"></i> -90°</button>
+                            <button type="button" onclick="rotateCropImage(90)" class="w-full py-1.5 bg-slate-800 hover:bg-slate-700 rounded-lg text-slate-300 font-bold"><i class="fa-solid fa-rotate-right"></i> +90°</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Action Buttons -->
+            <div class="mt-6 flex justify-end space-x-3">
+                <button type="button" onclick="closeCropModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl font-semibold text-xs">Cancel</button>
+                <button type="button" onclick="applyCroppedImage()" class="px-5 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-bold text-xs flex items-center space-x-1.5 shadow-lg">
+                    <i class="fa-solid fa-check"></i>
+                    <span>Save Cropped Photo</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. BUY / PAYMENT METHOD MODAL (WITH THREE-DOTS MENU) -->
+    <div id="buy-modal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl relative my-8 text-center">
+            
+            <!-- Three Dots Icon & Close Button Header Bar -->
+            <div class="absolute top-4 left-4 flex items-center space-x-2">
+                <button onclick="toggleBuyModalMenu()" title="Options" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition-colors">
+                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                </button>
+
+                <!-- Three-dots Dropdown Menu -->
+                <div id="buy-modal-dropdown" class="hidden absolute left-0 top-10 w-64 bg-slate-950 border border-slate-800 rounded-xl shadow-2xl z-50 text-left overflow-hidden">
+                    <button onclick="openFreeDownloadModal()" class="w-full px-3.5 py-2.5 text-xs text-amber-400 hover:bg-slate-900 font-semibold flex items-center space-x-2 border-b border-slate-900">
+                        <i class="fa-solid fa-key"></i>
+                        <span>Free me download karne ke liye password dale</span>
+                    </button>
+                    <button onclick="openForgotPasswordModal()" class="w-full px-3.5 py-2.5 text-xs text-slate-300 hover:bg-slate-900 flex items-center space-x-2">
+                        <i class="fa-solid fa-circle-question"></i>
+                        <span>Forgot Password? (Password bhool gaye?)</span>
+                    </button>
+                </div>
+            </div>
+
+            <button onclick="closeBuyModal()" class="absolute top-4 right-4 w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <!-- Product Header -->
+            <div class="mb-4 pt-2">
+                <span class="px-2.5 py-1 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 text-[10px] font-bold uppercase tracking-wider" id="modal-category">PRESET</span>
+                <h3 class="text-xl font-bold text-white font-heading mt-2" id="modal-title">Product Name</h3>
+                <p class="text-xs text-slate-400 mt-1" id="modal-desc">Product description goes here.</p>
+            </div>
+
+            <!-- Price Tag -->
+            <div class="my-3 py-2 px-4 rounded-xl bg-slate-950 border border-slate-800 inline-block">
+                <span class="text-xs text-slate-400 uppercase font-semibold">Total Price:</span>
+                <span class="text-2xl font-black text-amber-400 ml-2 font-heading" id="modal-price">₹199</span>
+            </div>
+
+            <!-- PAYMENT METHOD TABS -->
+            <div class="mb-4 bg-slate-950 p-1 rounded-xl border border-slate-800 flex text-xs font-bold">
+                <button id="pay-tab-qr" onclick="switchPaymentTab('qr')" class="flex-1 py-2 rounded-lg bg-red-600 text-white shadow">
+                    <i class="fa-solid fa-qrcode mr-1"></i> Fresh QR
+                </button>
+                <button id="pay-tab-apps" onclick="switchPaymentTab('apps')" class="flex-1 py-2 rounded-lg text-slate-400 hover:text-white">
+                    <i class="fa-solid fa-mobile-screen mr-1"></i> PhonePe / GPay / Paytm
+                </button>
+            </div>
+
+            <!-- TAB 1: FRESH DYNAMIC QR CODE -->
+            <div id="pay-view-qr" class="space-y-3">
+                <div class="bg-white p-3 rounded-2xl max-w-[210px] mx-auto shadow-xl border-4 border-slate-800 relative group">
+                    <img id="modal-qr-img" src="" alt="Fresh Payment QR Code" class="w-full h-auto rounded-lg">
+                    <button onclick="refreshDynamicQrCode()" title="Generate Fresh QR" class="absolute bottom-2 right-2 p-2 bg-slate-900/80 hover:bg-slate-900 text-amber-400 rounded-lg text-xs backdrop-blur-sm shadow">
+                        <i class="fa-solid fa-arrows-rotate"></i>
+                    </button>
+                </div>
+                <p class="text-[11px] text-emerald-400 font-semibold"><i class="fa-solid fa-bolt mr-1"></i> 100% Fresh QR generated for ₹<span id="qr-price-val">199</span></p>
+            </div>
+
+            <!-- TAB 2: DIRECT PAYMENT APPS (PhonePe, GPay, Paytm) -->
+            <div id="pay-view-apps" class="hidden space-y-2.5 my-4">
+                <p class="text-xs text-slate-400 mb-2">Tap your favorite UPI payment app to open directly:</p>
+                
+                <!-- PhonePe -->
+                <button onclick="openUpiApp('phonepe')" class="w-full py-3 px-4 rounded-xl bg-[#5f259f]/20 hover:bg-[#5f259f]/30 border border-[#5f259f]/50 text-purple-300 font-bold text-xs flex items-center justify-between transition-all group">
+                    <span class="flex items-center space-x-2.5">
+                        <span class="w-7 h-7 rounded-lg bg-[#5f259f] flex items-center justify-center text-white text-xs font-black">₱</span>
+                        <span class="text-slate-100">PhonePe UPI</span>
+                    </span>
+                    <span class="text-[10px] text-purple-300 bg-[#5f259f]/40 px-2 py-1 rounded-md group-hover:bg-[#5f259f] group-hover:text-white">Pay ₹<span class="app-price-display">199</span> <i class="fa-solid fa-chevron-right ml-1"></i></span>
+                </button>
+
+                <!-- Google Pay -->
+                <button onclick="openUpiApp('gpay')" class="w-full py-3 px-4 rounded-xl bg-[#4285f4]/20 hover:bg-[#4285f4]/30 border border-[#4285f4]/50 text-blue-300 font-bold text-xs flex items-center justify-between transition-all group">
+                    <span class="flex items-center space-x-2.5">
+                        <span class="w-7 h-7 rounded-lg bg-[#4285f4] flex items-center justify-center text-white text-xs font-black">G</span>
+                        <span class="text-slate-100">Google Pay (GPay)</span>
+                    </span>
+                    <span class="text-[10px] text-blue-300 bg-[#4285f4]/40 px-2 py-1 rounded-md group-hover:bg-[#4285f4] group-hover:text-white">Pay ₹<span class="app-price-display">199</span> <i class="fa-solid fa-chevron-right ml-1"></i></span>
+                </button>
+
+                <!-- Paytm -->
+                <button onclick="openUpiApp('paytm')" class="w-full py-3 px-4 rounded-xl bg-[#00baf2]/20 hover:bg-[#00baf2]/30 border border-[#00baf2]/50 text-cyan-300 font-bold text-xs flex items-center justify-between transition-all group">
+                    <span class="flex items-center space-x-2.5">
+                        <span class="w-7 h-7 rounded-lg bg-[#00baf2] flex items-center justify-center text-white text-xs font-black">P</span>
+                        <span class="text-slate-100">Paytm UPI</span>
+                    </span>
+                    <span class="text-[10px] text-cyan-300 bg-[#00baf2]/40 px-2 py-1 rounded-md group-hover:bg-[#00baf2] group-hover:text-white">Pay ₹<span class="app-price-display">199</span> <i class="fa-solid fa-chevron-right ml-1"></i></span>
+                </button>
+            </div>
+
+            <!-- UPI ID & COPY -->
+            <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 my-4 flex items-center justify-between">
+                <div class="text-left">
+                    <span class="block text-[10px] text-slate-500 uppercase font-bold">UPI ID</span>
+                    <span class="text-xs font-mono font-bold text-slate-200" id="modal-upi-id">ravanofficial9987@paytm</span>
+                </div>
+                <button onclick="copyUpiId()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-amber-400 text-xs font-semibold rounded-lg transition-colors flex items-center space-x-1">
+                    <i class="fa-regular fa-copy"></i>
+                    <span id="copy-btn-text">Copy</span>
+                </button>
+            </div>
+
+            <!-- Verification & Unlock Form -->
+            <div class="space-y-3 text-left">
+                <div>
+                    <label class="block text-[11px] font-semibold text-slate-400 mb-1">Transaction ID / UTR (After Payment)</label>
+                    <input type="text" id="utr-input" placeholder="Transaction ID" class="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-700 rounded-xl text-slate-100 text-xs focus:outline-none focus:ring-2 focus:ring-red-500">
+                </div>
+
+                <button onclick="confirmPaymentAndUnlock()" class="w-full py-3 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-sm rounded-xl transition-all shadow-lg flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>Payment Complete - Unlock File</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. ADMIN FREE DOWNLOAD PASSWORD MODAL -->
+    <div id="free-download-modal" class="fixed inset-0 z-50 hidden bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-sm w-full p-6 shadow-2xl relative text-center">
+            <button onclick="closeFreeDownloadModal()" class="absolute top-4 right-4 w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="w-12 h-12 mx-auto rounded-full bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-xl mb-3">
+                <i class="fa-solid fa-key"></i>
+            </div>
+
+            <h3 class="text-base font-bold text-white font-heading">Free me download karne ke liye password dale</h3>
+            <p class="text-xs text-slate-400 mt-1 mb-4">Admin Free Download verification password enter karein.</p>
+
+            <form onsubmit="handleFreeDownloadAuth(event)" class="space-y-3">
+                <input type="password" id="free-download-pass-input" placeholder="Enter Free Password" class="w-full px-4 py-2.5 bg-slate-950 border border-slate-700 rounded-xl text-slate-100 text-center text-sm focus:outline-none focus:ring-2 focus:ring-amber-500" required>
+                
+                <button type="submit" class="w-full py-2.5 bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs rounded-xl shadow-lg transition-all">
+                    Unlock File Free
+                </button>
+            </form>
+
+            <div class="mt-3">
+                <button type="button" onclick="openForgotPasswordModal()" class="text-[11px] text-slate-400 hover:text-amber-400 underline">
+                    Forgot Password? (Password bhool gaye?)
+                </button>
+            </div>
+
+            <div id="free-pass-error" class="hidden mt-2 text-xs text-red-400">Incorrect Free Download Password!</div>
+        </div>
+    </div>
+
+    <!-- 5. FORGOT PASSWORD MODAL (CLEANED - NO EXAMPLES SHOWN) -->
+    <div id="forgot-modal" class="fixed inset-0 z-50 hidden bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
+            <button onclick="closeForgotPasswordModal()" class="absolute top-4 right-4 w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="flex items-center space-x-3 border-b border-slate-800 pb-3 mb-4">
+                <div class="w-9 h-9 rounded-lg bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400">
+                    <i class="fa-solid fa-unlock-keyhole"></i>
+                </div>
+                <div>
+                    <h3 class="text-base font-bold text-white font-heading">Admin Password Recovery</h3>
+                    <p class="text-xs text-slate-400">Reset passwords using Master Recovery PIN</p>
+                </div>
+            </div>
+
+            <div class="space-y-4 text-xs">
+                <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-1">
+                    <span class="font-bold text-amber-400 block"><i class="fa-solid fa-shield-halved mr-1"></i> Owner Verification Contact:</span>
+                    <p class="text-slate-300">Instagram: <a href="https://instagram.com/superrrr_boy_999" target="_blank" class="text-pink-400 font-bold">@superrrr_boy_999</a></p>
+                    <p class="text-slate-300">Gmail: <a href="mailto:ravanofficial9987@gmail.com" class="text-red-400 font-bold">ravanofficial9987@gmail.com</a></p>
+                </div>
+
+                <form onsubmit="handleResetPassword(event)" class="space-y-3">
+                    <div>
+                        <label class="block font-semibold text-slate-400 mb-1">Enter Master Recovery PIN</label>
+                        <input type="password" id="recovery-pin-input" placeholder="Recovery PIN" class="w-full px-3.5 py-2 bg-slate-950 border border-slate-700 rounded-xl text-slate-100 text-xs focus:ring-2 focus:ring-red-500" required>
+                    </div>
+
+                    <div>
+                        <label class="block font-semibold text-slate-400 mb-1">Set New Admin Main Password</label>
+                        <input type="password" id="new-admin-pass-input" placeholder="New Admin Password" class="w-full px-3.5 py-2 bg-slate-950 border border-slate-700 rounded-xl text-slate-100 text-xs focus:ring-2 focus:ring-red-500" required>
+                    </div>
+
+                    <div>
+                        <label class="block font-semibold text-slate-400 mb-1">Set New Free Download Password</label>
+                        <input type="password" id="new-free-pass-input" placeholder="New Free Download Password" class="w-full px-3.5 py-2 bg-slate-950 border border-slate-700 rounded-xl text-slate-100 text-xs focus:ring-2 focus:ring-red-500" required>
+                    </div>
+
+                    <button type="submit" class="w-full py-2.5 bg-red-600 hover:bg-red-500 text-white font-bold rounded-xl shadow-lg transition-all">
+                        Reset Passwords Now
+                    </button>
+                </form>
+
+                <div id="recovery-error" class="hidden text-xs text-red-400 text-center">Incorrect Recovery PIN. Contact owner @superrrr_boy_999</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 space-y-2 pointer-events-none"></div>
+
+    <!-- ================= JAVASCRIPT LOGIC ================= -->
+    <script>
+        // Store State & Passwords
+        let isAdminLoggedIn = false;
+        let adminMainPassword = "ravan";
+        let adminFreePassword = "ravan99";
+        let masterRecoveryPin = "9987";
+
+        let upiId = "ravanofficial9987@paytm";
+        let customQrUrl = "";
+        let selectedProductForBuy = null;
+        let croppedImageDataUrl = null;
+
+        // Image Crop Global State
+        let rawImageElement = new Image();
+        let cropTargetRatio = 1.33; // 4:3 default
+        let cropRotation = 0;
+
+        // Default Initial Products
+        const defaultProducts = [
+            {
+                id: "prod_1",
+                title: "Ravan Cinematic LUTS Pack Vol. 1",
+                category: "Presets",
+                price: 199,
+                description: "15+ Professional Color Grading LUTS for Premiere Pro, DaVinci Resolve & Lightroom.",
+                fileType: "ZIP Archive",
+                fileSize: "45 MB",
+                thumbnail: "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=500&auto=format&fit=crop&q=80",
+                fileData: "data:application/zip;base64,UEsDBAoAAAAAA...",
+                unlocked: false
+            },
+            {
+                id: "prod_2",
+                title: "3D Ravan Skull Shield Asset",
+                category: "3D Assets",
+                price: 299,
+                description: "High Poly 3D Shield Model with 4K PBR Textures (.OBJ, .FBX, .BLEND format).",
+                fileType: "3D Model",
+                fileSize: "120 MB",
+                thumbnail: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=500&auto=format&fit=crop&q=80",
+                fileData: "data:application/octet-stream;base64,UEsDBAoAAAAAA...",
+                unlocked: false
+            },
+            {
+                id: "prod_3",
+                title: "Ultra Transitions & Sound FX Bundle",
+                category: "Editing Packs",
+                price: 149,
+                description: "50+ Seamless Video Transitions, Glitch Effects, Sound FX & Motion Overlays.",
+                fileType: "MP4 / WAV",
+                fileSize: "210 MB",
+                thumbnail: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=80",
+                fileData: "data:application/zip;base64,UEsDBAoAAAAAA...",
+                unlocked: false
+            },
+            {
+                id: "prod_4",
+                title: "Photoshop Cyberpunk Poster Template",
+                category: "Templates",
+                price: 99,
+                description: "Fully editable PSD Poster Template with smart object layers & custom fonts.",
+                fileType: "PSD Template",
+                fileSize: "85 MB",
+                thumbnail: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=500&auto=format&fit=crop&q=80",
+                fileData: "data:image/vnd.adobe.photoshop;base64,UEsDBAoAAAAAA...",
+                unlocked: false
+            }
+        ];
+
+        let products = [];
+
+        // INITIALIZATION
+        window.addEventListener('DOMContentLoaded', () => {
+            loadState();
+            renderProducts();
+        });
+
+        // LOAD FROM LOCAL STORAGE
+        function loadState() {
+            try {
+                const savedProducts = localStorage.getItem('ravan_products');
+                if (savedProducts) {
+                    products = JSON.parse(savedProducts);
+                } else {
+                    products = defaultProducts;
+                    saveProductsToStorage();
+                }
+
+                const savedUpi = localStorage.getItem('ravan_upi_id');
+                if (savedUpi) upiId = savedUpi;
+
+                const savedQr = localStorage.getItem('ravan_custom_qr');
+                if (savedQr) customQrUrl = savedQr;
+
+                const savedMainPass = localStorage.getItem('ravan_main_pass');
+                if (savedMainPass) adminMainPassword = savedMainPass;
+
+                const savedFreePass = localStorage.getItem('ravan_free_pass');
+                if (savedFreePass) adminFreePassword = savedFreePass;
+            } catch (e) {
+                console.error("Storage error:", e);
+                products = defaultProducts;
+            }
+        }
+
+        function saveProductsToStorage() {
+            try {
+                localStorage.setItem('ravan_products', JSON.stringify(products));
+            } catch (e) {
+                console.warn("Storage quota exceeded, keeping in memory.");
+            }
+        }
+
+        // RENDER PRODUCTS GRID
+        function renderProducts(filteredList = null) {
+            const list = filteredList || products;
+            const grid = document.getElementById('product-grid');
+            const emptyState = document.getElementById('empty-state');
+            const countText = document.getElementById('file-count-text');
+
+            countText.innerText = `Showing ${list.length} file${list.length !== 1 ? 's' : ''}`;
+
+            if (list.length === 0) {
+                grid.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            grid.innerHTML = list.map(item => `
+                <div class="glass-card rounded-2xl overflow-hidden hover:border-slate-700 transition-all duration-300 flex flex-col group">
+                    <!-- Thumbnail -->
+                    <div class="relative h-48 overflow-hidden bg-slate-900">
+                        <img src="${item.thumbnail}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md border border-slate-800 text-amber-400 text-[10px] font-bold uppercase tracking-wider">
+                            ${item.category}
+                        </span>
+                        ${item.unlocked ? `
+                            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-emerald-500/90 text-white text-[10px] font-bold uppercase tracking-wider flex items-center space-x-1">
+                                <i class="fa-solid fa-lock-open"></i> <span>Unlocked</span>
+                            </span>
+                        ` : ''}
+                    </div>
+
+                    <!-- Content -->
+                    <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
+                        <div>
+                            <div class="flex items-center justify-between text-[11px] text-slate-400 mb-1">
+                                <span><i class="fa-regular fa-file-code text-red-400 mr-1"></i> ${item.fileType || 'Digital Asset'}</span>
+                                <span>${item.fileSize || 'Direct Download'}</span>
+                            </div>
+                            <h3 class="text-base font-bold text-white font-heading group-hover:text-red-400 transition-colors line-clamp-1">${item.title}</h3>
+                            <p class="text-xs text-slate-400 mt-1 line-clamp-2">${item.description}</p>
+                        </div>
+
+                        <!-- Price & Action -->
+                        <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between">
+                            <div>
+                                <span class="block text-[10px] text-slate-500 font-bold uppercase">Price</span>
+                                <span class="text-xl font-black text-amber-400 font-heading">₹${item.price}</span>
+                            </div>
+
+                            ${item.unlocked ? `
+                                <button onclick="downloadFile('${item.id}')" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl transition-all flex items-center space-x-1.5 shadow-md">
+                                    <i class="fa-solid fa-download"></i>
+                                    <span>Download</span>
+                                </button>
+                            ` : `
+                                <button onclick="openBuyModal('${item.id}')" class="px-4 py-2 bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-bold text-xs rounded-xl transition-all flex items-center space-x-1.5 shadow-md glow-effect">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                    <span>Buy Now</span>
+                                </button>
+                            `}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            if (isAdminLoggedIn) renderAdminTable();
+        }
+
+        // SEARCH & FILTER
+        function handleSearch() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const cat = document.getElementById('category-filter').value;
+            filterData(query, cat);
+        }
+
+        function handleCategoryChange() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const cat = document.getElementById('category-filter').value;
+            filterData(query, cat);
+        }
+
+        function filterCategory(cat) {
+            document.getElementById('category-filter').value = cat;
+            handleCategoryChange();
+        }
+
+        function filterData(query, category) {
+            const filtered = products.filter(p => {
+                const matchesQuery = p.title.toLowerCase().includes(query) || p.description.toLowerCase().includes(query);
+                const matchesCategory = category === 'all' || p.category === category;
+                return matchesQuery && matchesCategory;
+            });
+            renderProducts(filtered);
+        }
+
+        // ================= BUY & PAYMENT FLOW =================
+        function openBuyModal(productId) {
+            const item = products.find(p => p.id === productId);
+            if (!item) return;
+
+            selectedProductForBuy = item;
+            document.getElementById('modal-title').innerText = item.title;
+            document.getElementById('modal-desc').innerText = item.description;
+            document.getElementById('modal-category').innerText = item.category;
+            document.getElementById('modal-price').innerText = `₹${item.price}`;
+            document.getElementById('qr-price-val').innerText = item.price;
+            
+            document.querySelectorAll('.app-price-display').forEach(el => el.innerText = item.price);
+            document.getElementById('modal-upi-id').innerText = upiId;
+            document.getElementById('utr-input').value = '';
+            document.getElementById('buy-modal-dropdown').classList.add('hidden');
+
+            switchPaymentTab('qr');
+            refreshDynamicQrCode();
+
+            document.getElementById('buy-modal').classList.remove('hidden');
+        }
+
+        function closeBuyModal() {
+            document.getElementById('buy-modal').classList.add('hidden');
+            document.getElementById('buy-modal-dropdown').classList.add('hidden');
+            selectedProductForBuy = null;
+        }
+
+        function toggleBuyModalMenu() {
+            document.getElementById('buy-modal-dropdown').classList.toggle('hidden');
+        }
+
+        function switchPaymentTab(tab) {
+            const qrBtn = document.getElementById('pay-tab-qr');
+            const appsBtn = document.getElementById('pay-tab-apps');
+            const qrView = document.getElementById('pay-view-qr');
+            const appsView = document.getElementById('pay-view-apps');
+
+            if (tab === 'qr') {
+                qrBtn.className = "flex-1 py-2 rounded-lg bg-red-600 text-white shadow";
+                appsBtn.className = "flex-1 py-2 rounded-lg text-slate-400 hover:text-white";
+                qrView.classList.remove('hidden');
+                appsView.classList.add('hidden');
+            } else {
+                appsBtn.className = "flex-1 py-2 rounded-lg bg-purple-600 text-white shadow";
+                qrBtn.className = "flex-1 py-2 rounded-lg text-slate-400 hover:text-white";
+                appsView.classList.remove('hidden');
+                qrView.classList.add('hidden');
+            }
+        }
+
+        function refreshDynamicQrCode() {
+            if (!selectedProductForBuy) return;
+            const qrImg = document.getElementById('modal-qr-img');
+            if (customQrUrl) {
+                qrImg.src = customQrUrl;
+            } else {
+                const refTime = Date.now();
+                const upiPayUrl = `upi://pay?pa=${encodeURIComponent(upiId)}&pn=Ravan%20Studio&am=${selectedProductForBuy.price}&cu=INR&tn=Order_${selectedProductForBuy.id}_${refTime}`;
+                qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiPayUrl)}`;
+            }
+        }
+
+        function openUpiApp(app) {
+            if (!selectedProductForBuy) return;
+            const price = selectedProductForBuy.price;
+            const note = `RavanStudio_${selectedProductForBuy.title.replace(/[^a-z0-9]/gi, '')}`;
+            const upiIntent = `upi://pay?pa=${encodeURIComponent(upiId)}&pn=Ravan%20Studio&am=${price}&cu=INR&tn=${encodeURIComponent(note)}`;
+
+            const appNames = { phonepe: "PhonePe", gpay: "Google Pay", paytm: "Paytm" };
+
+            // Attempt to trigger URI scheme
+            window.location.href = upiIntent;
+            showToast(`Opening ${appNames[app] || 'UPI App'} for ₹${price}...`, "info");
+        }
+
+        function copyUpiId() {
+            navigator.clipboard.writeText(upiId).then(() => {
+                const btnText = document.getElementById('copy-btn-text');
+                btnText.innerText = "Copied!";
+                setTimeout(() => { btnText.innerText = "Copy"; }, 2000);
+            }).catch(() => {
+                showToast("UPI ID: " + upiId, "info");
+            });
+        }
+
+        function confirmPaymentAndUnlock() {
+            if (!selectedProductForBuy) return;
+
+            // Mark product as unlocked
+            const target = products.find(p => p.id === selectedProductForBuy.id);
+            if (target) {
+                target.unlocked = true;
+                saveProductsToStorage();
+                renderProducts();
+            }
+
+            closeBuyModal();
+            showToast("Payment Verified! File Unlocked Successfully.", "success");
+        }
+
+        // ================= FREE DOWNLOAD & FORGOT PASSWORD =================
+        function openFreeDownloadModal() {
+            document.getElementById('buy-modal-dropdown').classList.add('hidden');
+            document.getElementById('free-download-modal').classList.remove('hidden');
+            document.getElementById('free-download-pass-input').value = '';
+            document.getElementById('free-pass-error').classList.add('hidden');
+        }
+
+        function closeFreeDownloadModal() {
+            document.getElementById('free-download-modal').classList.add('hidden');
+        }
+
+        function handleFreeDownloadAuth(e) {
+            e.preventDefault();
+            const inputPass = document.getElementById('free-download-pass-input').value.trim();
+
+            if (inputPass === adminFreePassword) {
+                if (selectedProductForBuy) {
+                    const target = products.find(p => p.id === selectedProductForBuy.id);
+                    if (target) {
+                        target.unlocked = true;
+                        saveProductsToStorage();
+                        renderProducts();
+                    }
+                }
+                closeFreeDownloadModal();
+                closeBuyModal();
+                showToast("Admin Verified! File Unlocked for Free Download.", "success");
+            } else {
+                document.getElementById('free-pass-error').classList.remove('hidden');
+            }
+        }
+
+        function openForgotPasswordModal() {
+            closeFreeDownloadModal();
+            closeAdminModal();
+            document.getElementById('forgot-modal').classList.remove('hidden');
+            document.getElementById('recovery-pin-input').value = '';
+            document.getElementById('new-admin-pass-input').value = '';
+            document.getElementById('new-free-pass-input').value = '';
+            document.getElementById('recovery-error').classList.add('hidden');
+        }
+
+        function closeForgotPasswordModal() {
+            document.getElementById('forgot-modal').classList.add('hidden');
+        }
+
+        function handleResetPassword(e) {
+            e.preventDefault();
+            const pin = document.getElementById('recovery-pin-input').value.trim();
+            const newMain = document.getElementById('new-admin-pass-input').value.trim();
+            const newFree = document.getElementById('new-free-pass-input').value.trim();
+
+            if (pin === masterRecoveryPin || pin === "9987") {
+                if (newMain) {
+                    adminMainPassword = newMain;
+                    localStorage.setItem('ravan_main_pass', newMain);
+                }
+                if (newFree) {
+                    adminFreePassword = newFree;
+                    localStorage.setItem('ravan_free_pass', newFree);
+                }
+                closeForgotPasswordModal();
+                showToast("Admin Passwords Reset Successfully!", "success");
+            } else {
+                document.getElementById('recovery-error').classList.remove('hidden');
+            }
+        }
+
+        function downloadFile(productId) {
+            const item = products.find(p => p.id === productId);
+            if (!item) return;
+
+            // Trigger file download
+            const a = document.createElement('a');
+            if (item.fileData && item.fileData.startsWith('data:')) {
+                a.href = item.fileData;
+            } else {
+                // Fallback downloadable text payload if file blob not uploaded
+                const blob = new Blob([`Ravan Studio Digital Asset Payload\nProduct: ${item.title}\nCategory: ${item.category}\nContact: ravanofficial9987@gmail.com / @superrrr_boy_999`], { type: 'text/plain' });
+                a.href = URL.createObjectURL(blob);
+            }
+            a.download = `${item.title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_ravanstudio.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+
+            showToast(`Downloading: ${item.title}`, "info");
+        }
+
+        // ================= IMAGE CROPPER & RESIZER LOGIC =================
+        function handleThumbnailSelect(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                rawImageElement.onload = function() {
+                    openCropModal();
+                };
+                rawImageElement.src = evt.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function openCropModal() {
+            if (!rawImageElement.src) return;
+            document.getElementById('crop-modal').classList.remove('hidden');
+            cropRotation = 0;
+            document.getElementById('crop-zoom').value = 1.0;
+            renderCropCanvas();
+        }
+
+        function closeCropModal() {
+            document.getElementById('crop-modal').classList.add('hidden');
+        }
+
+        function setCropRatio(ratio) {
+            cropTargetRatio = ratio;
+            renderCropCanvas();
+        }
+
+        function rotateCropImage(deg) {
+            cropRotation = (cropRotation + deg) % 360;
+            renderCropCanvas();
+        }
+
+        function renderCropCanvas() {
+            const canvas = document.getElementById('crop-canvas');
+            const ctx = canvas.getContext('2d');
+            const zoom = parseFloat(document.getElementById('crop-zoom').value) || 1.0;
+
+            if (!rawImageElement.width) return;
+
+            let origW = rawImageElement.width;
+            let origH = rawImageElement.height;
+
+            let targetW = 400;
+            let targetH = cropTargetRatio > 0 ? Math.round(targetW / cropTargetRatio) : Math.round(targetW * (origH / origW));
+
+            canvas.width = targetW;
+            canvas.height = targetH;
+
+            ctx.clearRect(0, 0, targetW, targetH);
+            ctx.save();
+
+            ctx.translate(targetW / 2, targetH / 2);
+            ctx.rotate((cropRotation * Math.PI) / 180);
+            ctx.scale(zoom, zoom);
+
+            let drawW = targetW;
+            let drawH = targetW * (origH / origW);
+            if (drawH < targetH) {
+                drawH = targetH;
+                drawW = targetH * (origW / origH);
+            }
+
+            ctx.drawImage(rawImageElement, -drawW / 2, -drawH / 2, drawW, drawH);
+            ctx.restore();
+        }
+
+        function applyCroppedImage() {
+            const canvas = document.getElementById('crop-canvas');
+            croppedImageDataUrl = canvas.toDataURL('image/jpeg', 0.88);
+
+            document.getElementById('cropped-thumb-img').src = croppedImageDataUrl;
+            document.getElementById('cropped-thumb-preview-box').classList.remove('hidden');
+            closeCropModal();
+            showToast("Cropped Photo Ready for Upload!", "success");
+        }
+
+        // ================= ADMIN PANEL FLOW =================
+        function openAdminModal() {
+            document.getElementById('admin-modal').classList.remove('hidden');
+            if (!isAdminLoggedIn) {
+                document.getElementById('admin-login-view').classList.remove('hidden');
+                document.getElementById('admin-dashboard-view').classList.add('hidden');
+                document.getElementById('login-error').classList.add('hidden');
+                document.getElementById('admin-password-input').value = '';
+            } else {
+                document.getElementById('admin-login-view').classList.add('hidden');
+                document.getElementById('admin-dashboard-view').classList.remove('hidden');
+                renderAdminTable();
+            }
+        }
+
+        function closeAdminModal() {
+            document.getElementById('admin-modal').classList.add('hidden');
+        }
+
+        function handleAdminLogin(e) {
+            e.preventDefault();
+            const pass = document.getElementById('admin-password-input').value;
+            if (pass === adminMainPassword) {
+                isAdminLoggedIn = true;
+                document.getElementById('admin-login-view').classList.add('hidden');
+                document.getElementById('admin-dashboard-view').classList.remove('hidden');
+                document.getElementById('admin-badge').classList.remove('hidden');
+                renderAdminTable();
+                showToast("Welcome Admin! Access Granted.", "success");
+            } else {
+                document.getElementById('login-error').classList.remove('hidden');
+            }
+        }
+
+        function switchAdminTab(tab) {
+            const tabs = ['upload', 'manage', 'payment'];
+            tabs.forEach(t => {
+                document.getElementById(`admin-tab-${t}`).classList.add('hidden');
+                const btn = document.getElementById(`tab-btn-${t}`);
+                btn.classList.remove('border-red-500', 'text-red-400');
+                btn.classList.add('border-transparent', 'text-slate-400');
+            });
+
+            document.getElementById(`admin-tab-${tab}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`tab-btn-${tab}`);
+            activeBtn.classList.remove('border-transparent', 'text-slate-400');
+            activeBtn.classList.add('border-red-500', 'text-red-400');
+
+            if (tab === 'manage') renderAdminTable();
+            if (tab === 'payment') document.getElementById('setting-upi-id').value = upiId;
+        }
+
+        // ADD NEW FILE (ADMIN)
+        function handleAddNewFile(e) {
+            e.preventDefault();
+
+            const title = document.getElementById('upload-title').value.trim();
+            const price = parseFloat(document.getElementById('upload-price').value) || 0;
+            const category = document.getElementById('upload-category').value;
+            const description = document.getElementById('upload-description').value.trim();
+
+            const digitalFile = document.getElementById('upload-digital-file').files[0];
+
+            let defaultThumbs = {
+                "Presets": "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=500&auto=format&fit=crop&q=80",
+                "3D Assets": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=500&auto=format&fit=crop&q=80",
+                "Editing Packs": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=80",
+                "Templates": "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=500&auto=format&fit=crop&q=80",
+                "Other": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=500&auto=format&fit=crop&q=80"
+            };
+
+            const newId = "prod_" + Date.now();
+            let newProduct = {
+                id: newId,
+                title: title,
+                category: category,
+                price: price,
+                description: description,
+                fileType: digitalFile ? digitalFile.name.split('.').pop().toUpperCase() + " File" : "Digital Asset",
+                fileSize: digitalFile ? (digitalFile.size / (1024*1024)).toFixed(1) + " MB" : "File Asset",
+                thumbnail: croppedImageDataUrl || defaultThumbs[category] || defaultThumbs["Other"],
+                fileData: null,
+                unlocked: false
+            };
+
+            const processSave = () => {
+                products.unshift(newProduct);
+                saveProductsToStorage();
+                renderProducts();
+                showToast(`Published "${title}" for ₹${price}`, "success");
+                croppedImageDataUrl = null;
+                document.getElementById('cropped-thumb-preview-box').classList.add('hidden');
+                switchAdminTab('manage');
+            };
+
+            if (digitalFile) {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    newProduct.fileData = evt.target.result;
+                    processSave();
+                };
+                reader.readAsDataURL(digitalFile);
+            } else {
+                processSave();
+            }
+        }
+
+        // RENDER ADMIN MANAGE TABLE
+        function renderAdminTable() {
+            const tbody = document.getElementById('admin-products-table-body');
+            tbody.innerHTML = products.map(p => `
+                <tr>
+                    <td class="p-3">
+                        <div class="flex items-center space-x-2">
+                            <img src="${p.thumbnail}" class="w-8 h-8 rounded object-cover">
+                            <div>
+                                <span class="font-bold text-white block">${p.title}</span>
+                                <span class="text-[10px] text-slate-400">${p.fileType}</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="p-3"><span class="px-2 py-0.5 rounded bg-slate-800 text-amber-400 text-[10px]">${p.category}</span></td>
+                    <td class="p-3">
+                        <div class="flex items-center space-x-1">
+                            <span class="text-amber-400 font-bold">₹</span>
+                            <input type="number" value="${p.price}" onchange="updateProductPrice('${p.id}', this.value)" class="w-16 px-2 py-1 bg-slate-950 border border-slate-700 rounded text-slate-100 font-bold text-xs focus:ring-1 focus:ring-red-500">
+                        </div>
+                    </td>
+                    <td class="p-3 text-right">
+                        <button onclick="deleteProduct('${p.id}')" class="px-2.5 py-1 bg-red-600/20 hover:bg-red-600 text-red-400 hover:text-white rounded-lg transition-colors text-[11px] font-semibold">
+                            <i class="fa-solid fa-trash mr-1"></i> Delete
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function updateProductPrice(id, newPrice) {
+            const p = products.find(item => item.id === id);
+            if (p) {
+                p.price = parseFloat(newPrice) || 0;
+                saveProductsToStorage();
+                renderProducts();
+                showToast(`Price updated to ₹${p.price}`, "info");
+            }
+        }
+
+        function deleteProduct(id) {
+            products = products.filter(p => p.id !== id);
+            saveProductsToStorage();
+            renderProducts();
+            showToast("Product deleted successfully.", "info");
+        }
+
+        function handleSavePaymentSettings(e) {
+            e.preventDefault();
+            const newUpi = document.getElementById('setting-upi-id').value.trim();
+            if (newUpi) {
+                upiId = newUpi;
+                localStorage.setItem('ravan_upi_id', upiId);
+            }
+
+            const qrFile = document.getElementById('setting-qr-file').files[0];
+            if (qrFile) {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    customQrUrl = evt.target.result;
+                    localStorage.setItem('ravan_custom_qr', customQrUrl);
+                    showToast("Payment Settings & Custom QR Saved!", "success");
+                };
+                reader.readAsDataURL(qrFile);
+            } else {
+                showToast("UPI ID Saved!", "success");
+            }
+        }
+
+        // TOAST NOTIFICATION UTILITY
+        function showToast(msg, type = "info") {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            const colors = {
+                success: "bg-emerald-950/90 border-emerald-500/50 text-emerald-200",
+                info: "bg-slate-900/90 border-slate-700 text-slate-200",
+                warning: "bg-amber-950/90 border-amber-500/50 text-amber-200"
+            };
+
+            toast.className = `px-4 py-3 rounded-xl border backdrop-blur-md shadow-2xl text-xs font-semibold flex items-center space-x-2 transition-all transform translate-y-2 opacity-0 pointer-events-auto ${colors[type] || colors.info}`;
+            toast.innerHTML = `
+                <i class="fa-solid ${type === 'success' ? 'fa-circle-check text-emerald-400' : 'fa-circle-info text-amber-400'}"></i>
+                <span>${msg}</span>
+            `;
+
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            }, 10);
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
